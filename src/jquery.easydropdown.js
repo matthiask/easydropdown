@@ -31,6 +31,7 @@
 			var	self = this;
 
 			$.extend(self, settings);
+			self.settings = settings;
 			self.$select = $(domNode);
 			self.id = domNode.id;
 			self.options = [];
@@ -423,18 +424,15 @@
 		},
 
 		update: function() {
-			var self = this;
-			self.$options = self.$select.find('option');
-			self.options = [];
-			self.$options.each(function() {
-				var $option = $(this);
-				self.options.push({
-					domNode: $option[0],
-					title: $option.text(),
-					value: $option.val(),
-					selected: $option.is(':selected')
-				});
-			});
+			var settings;
+			this.$options = this.$select.find('option');
+			if(this.$options.length !== this.options.length) {
+				// options changed. Update the plugin.
+				settings = this.settings;
+				this.destroy();
+				this.init(this.$select[0], settings);
+			}
+			return this;
 		}
 	};
 

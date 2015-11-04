@@ -148,3 +148,5 @@ Remove all generated elements and unbind all handlers.
 Programmatically select option by index (integer) or value (string).
 + .val()
 Get selected value.
++ .update()
+Update the plugin after the underlying dropdown has been changed.
