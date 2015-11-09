@@ -112,7 +112,7 @@
 			for(var i = 0; i < self.$items.length; i++){
 				var $item = self.$items.eq(i);
 				self.maxHeight += $item.outerHeight();
-				if(self.cutOff == i+1){
+				if(self.cutOff === i+1){
 					break;
 				}
 			}
@@ -337,7 +337,7 @@
 				index: index,
 				title: option.title
 			};
-			self.focusIndex = i;
+			self.focusIndex = index;
 			if(typeof self.onChange === 'function'){
 				self.onChange.call(self.$select[0],{
 					title: option.title,
@@ -348,6 +348,7 @@
 
 		search: function(){
 			var self = this,
+				i,
 				title,
 				lock = function(i){
 					self.focusIndex = i;
@@ -358,7 +359,7 @@
 					return self.options[i].title.toUpperCase();
 				};
 
-			for(var i = 0; i < self.options.length; i++){
+			for(i = 0; i < self.options.length; i++){
 				title = getTitle(i);
 				if(title.indexOf(self.query) === 0){
 					lock(i);
@@ -413,7 +414,7 @@
 			self.disabled = true;
 			self.$container.addClass('disabled');
 			self.$select.attr('disabled',true);
-			if(!self.down)self.close();
+			if(!self.down){self.close();}
 		},
 
 		enable: function(){
@@ -456,7 +457,7 @@
 		eachReturn = this.each(function(){
 			if(args && typeof args[0] === 'string'){
 				var data = EasyDropDown.prototype.instances[this.id][args[0]](args[1], args[2]);
-				if(data)dataReturn.push(data);
+				if(data) {dataReturn.push(data);}
 			} else {
 				instantiate(this, args[0]);
 			}
