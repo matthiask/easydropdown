@@ -318,7 +318,7 @@
 			var self = this;
 
 			if(typeof index === 'string'){
-				index = self.$select.find('option[value='+index+']').index();
+				index = self.$select.find('option[value="'+index+'"]').index();
 			}
 
 			var	option = self.options[index],
